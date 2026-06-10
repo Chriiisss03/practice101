@@ -45,6 +45,7 @@ const letterNotes = document.querySelectorAll(".letter-note");
 
 let musicAvailable = true;
 const DEFAULT_MUSIC_VOLUME = 0.4;
+const PRIMED_MUSIC_VOLUME = 0.001;
 const metDate = new Date("2025-07-27T00:00:00");
 const memoryCards = [
   {
@@ -85,6 +86,7 @@ const URL_TEXT_LIMIT = 40;
 const MUSIC_MOMENT_TRIGGER_RATIO = 0.54;
 let sweetNickname = "My Sofiii";
 let musicMomentTimer = null;
+let musicPrimedByGesture = false;
 let moodParticleTimer = null;
 let introTeaserIndex = 0;
 let introTeaserTimer = null;
@@ -399,7 +401,16 @@ function beginIntroTransition() {
     introScreen.classList.add("is-exiting");
   }
   spawnIntroPetalBurst();
-  tryPlayMusic();
+
+  if (musicPrimedByGesture) {
+    try {
+      bgMusic.currentTime = 0;
+    } catch {}
+    bgMusic.volume = DEFAULT_MUSIC_VOLUME;
+  } else {
+    tryPlayMusic();
+  }
+
   setTimeout(() => {
     triggerMusicMoment();
   }, 320);
@@ -470,6 +481,22 @@ async function tryPlayMusic() {
   try {
     await bgMusic.play();
   } catch {}
+}
+
+async function primeMusicFromGesture() {
+  if (!musicAvailable || musicPrimedByGesture) {
+    return;
+  }
+
+  const previousVolume = bgMusic.volume;
+  bgMusic.volume = PRIMED_MUSIC_VOLUME;
+
+  try {
+    await bgMusic.play();
+    musicPrimedByGesture = true;
+  } catch {
+    bgMusic.volume = previousVolume;
+  }
 }
 
 function renderContent() {
@@ -1054,6 +1081,8 @@ function startIntroHold() {
   if (!introSealProgress || introCompleted) {
     return;
   }
+
+  primeMusicFromGesture();
 
   clearInterval(introHoldTimer);
   introHoldStart = Date.now();
