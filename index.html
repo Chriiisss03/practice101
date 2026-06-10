@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Message for Sofiii</title>
+  <meta name="description" content="A heartfelt interactive message made with love, music, and memories.">
+  <meta name="theme-color" content="#f582ae">
+  <link rel="canonical" href="https://chriiisss03.github.io/practice101/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="My Message for Sofiii">
+  <meta property="og:description" content="A heartfelt interactive message made with love, music, and memories.">
+  <meta property="og:url" content="https://chriiisss03.github.io/practice101/">
+  <meta property="og:site_name" content="My Message for Sofiii">
+  <meta property="og:image" content="https://chriiisss03.github.io/practice101/preview-card.svg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="My Message for Sofiii">
+  <meta name="twitter:description" content="A heartfelt interactive message made with love, music, and memories.">
+  <meta name="twitter:image" content="https://chriiisss03.github.io/practice101/preview-card.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <audio id="bgMusic" loop preload="none">
+    <source src="Boo'd Up - Ella Mai.mp3" type="audio/mpeg">
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <section class="intro-screen" id="introScreen" aria-label="Greeting screen" tabindex="0" role="button">
+    <div class="intro-card">
+      <div class="intro-decor" aria-hidden="true">
+        <span class="spark spark-a"></span>
+        <span class="spark spark-b"></span>
+        <span class="spark spark-c"></span>
+        <span class="float-icon float-heart">❤</span>
+        <span class="float-icon float-star">✦</span>
+        <span class="float-icon float-petal">❀</span>
+        <span class="float-icon float-moon">✧</span>
+      </div>
+      <p class="intro-eyebrow">A message prepared with courage</p>
+      <h1 id="introTitle">Hi, Sofhia.</h1>
+      <p id="introHint">A little message waiting for you.</p>
+      <p class="intro-time-line" id="introTimeLine"></p>
+      <p class="intro-teaser" id="introTeaser"></p>
+      <button id="introSealBtn" class="intro-seal" type="button" aria-label="Hold to open confession">
+        Hold my heart to open
+      </button>
+      <div class="intro-seal-track" aria-hidden="true">
+        <div id="introSealProgress"></div>
+      </div>
+      <p class="intro-cta">Hold for three seconds</p>
+    </div>
+  </section>
+
+  <div class="background-glow background-glow-a" aria-hidden="true"></div>
+  <div class="background-glow background-glow-b" aria-hidden="true"></div>
+
+  <main class="page hidden" id="mainPage">
+    <section class="story" aria-label="Confession card">
+      <article class="story-card" aria-live="polite">
+        <p class="eyebrow">A grateful confession</p>
+        <h1 id="heroTitle">Sofhia, Thank You</h1>
+        <p class="hero-sub" id="heroSubtitle"></p>
+        <div class="meta-row">
+          <button id="nicknameToggle" class="btn btn-secondary" type="button" aria-pressed="false">Use Sweet Nickname</button>
+          <button id="moodToggle" class="btn btn-secondary" type="button" aria-pressed="false">Switch to Dreamy Evening</button>
+          <p class="counter" id="daysCounter"></p>
+        </div>
+        <p id="confessionMessage"></p>
+
+        <section class="memory-slider" aria-label="Memory cards" data-reveal>
+          <h2 id="memoryTitle">What I Admire About You</h2>
+          <p id="memoryText"></p>
+          <div class="slider-controls">
+            <button id="memoryPrev" class="btn btn-secondary" type="button">Previous</button>
+            <button id="memoryNext" class="btn btn-secondary" type="button">Next</button>
+          </div>
+        </section>
+
+        <section class="relationship-map" aria-label="Relationship map card" data-reveal>
+          <h2>Our Distance, Same Heart</h2>
+          <p id="distanceText"></p>
+          <div class="map-track" role="img" aria-label="Route from Australia to Philippines">
+            <span class="map-dot map-au"></span>
+            <span class="map-route"></span>
+            <span class="map-heart">❤</span>
+            <span class="map-dot map-ph"></span>
+          </div>
+          <div class="map-labels">
+            <span>Darwin, Australia</span>
+            <span>Cavite, Philippines</span>
+          </div>
+        </section>
+
+        <section class="open-when" aria-label="Open when mini letters" data-reveal>
+          <h2>Open When...</h2>
+          <details class="letter-note">
+            <summary>Open when you miss me</summary>
+            <p>
+              Even if we are far from each other, my heart is always reaching for you.
+              If you miss me, read this and remember that distance cannot erase what I
+              feel. I carry you in my prayers, in my quiet moments, and in every plan I
+              make for the future. I may not be beside you right now, but my love still
+              chooses you every day. When the night feels long, think of this: I am under
+              the same sky, thinking of your smile, and wishing I could hold your hand.
+              You are never alone in this, not for one second.
+            </p>
+          </details>
+          <details class="letter-note">
+            <summary>Open when you are tired</summary>
+            <p>
+              Rest, breathe, and be gentle with yourself. You do not need to be perfect
+              today to be worthy of love. I admire your strength, but I also love your
+              softness and your need to pause. It is okay to slow down, to cry, to sleep,
+              and to leave some things unfinished for tomorrow. You have carried so much,
+              and I am proud of you even on your quiet, heavy days. If I were there, I
+              would remind you to drink water, breathe deeply, and let your heart rest.
+              You are doing better than you think, and I believe in you so much.
+            </p>
+          </details>
+          <details class="letter-note">
+            <summary>Open when you doubt us</summary>
+            <p>
+              I choose you with patience and intention. Distance may test us, but my
+              feelings are sincere and steady, not temporary and not shallow. I know we
+              are still growing through this season, and I know some days feel uncertain,
+              but I will keep showing up with honesty, effort, and consistency. I do not
+              want a rushed love. I want a real one that survives hard days, silence,
+              misunderstandings, and miles between us. If doubt visits your mind, come
+              back to this: I am here, I am serious, and I am still choosing us one day
+              at a time.
+            </p>
+          </details>
+        </section>
+
+        <section class="hold-reveal" aria-label="Hold to reveal" data-reveal>
+          <button id="holdRevealBtn" class="btn btn-surprise" type="button">Hold To Reveal</button>
+          <div class="hold-track" aria-hidden="true">
+            <div id="holdProgress"></div>
+          </div>
+          <p id="secretLine" class="hidden">My heart is safest when it is with you.</p>
+        </section>
+
+        <section class="closing-cta" aria-label="Final vow" data-reveal>
+          <button id="finalVowBtn" class="btn btn-vow" type="button">If you're still here...</button>
+          <p id="finalVowLine" class="hidden">No matter how many miles are between us, I will keep loving you with patience, respect, and steady intention.</p>
+        </section>
+
+        <div class="card-actions" data-reveal>
+          <button id="flowerBtn" class="btn btn-flower" type="button">Make Pink Flowers Pop</button>
+          <button id="surpriseBtn" class="btn btn-surprise" type="button">One More Thing...</button>
+          <button id="saveKeepsakeBtn" class="btn btn-secondary" type="button">Save Keepsake Card</button>
+          <button id="copyShareLinkBtn" class="btn btn-secondary" type="button">Copy Personalized Link</button>
+          <p id="shareLinkStatus" class="share-status" aria-live="polite"></p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <section class="modal hidden" id="surpriseModal" aria-hidden="true">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <article class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <h2 id="modalTitle">My Deepest Line For You</h2>
+      <p id="modalMessage">No matter where life brings us, I will always be grateful that I met you. You are the kind of love I prayed for and the peace I did not know I needed.</p>
+      <button id="closeModalBtn" class="btn btn-secondary" type="button">Close</button>
+    </article>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
