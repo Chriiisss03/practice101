@@ -87,6 +87,7 @@ const MUSIC_MOMENT_TRIGGER_RATIO = 0.54;
 let sweetNickname = "My Sofiii";
 let musicMomentTimer = null;
 let musicPrimedByGesture = false;
+let audioUnlockBound = false;
 let moodParticleTimer = null;
 let introTeaserIndex = 0;
 let introTeaserTimer = null;
@@ -406,10 +407,15 @@ function beginIntroTransition() {
     try {
       bgMusic.currentTime = 0;
     } catch {}
-    bgMusic.volume = DEFAULT_MUSIC_VOLUME;
-  } else {
-    tryPlayMusic();
   }
+  tryPlayMusic();
+
+  // Retry once shortly after transition starts for stricter mobile autoplay timing.
+  setTimeout(() => {
+    if (musicAvailable && bgMusic.paused) {
+      tryPlayMusic();
+    }
+  }, 700);
 
   setTimeout(() => {
     triggerMusicMoment();
@@ -479,6 +485,7 @@ async function tryPlayMusic() {
   }
 
   try {
+    bgMusic.volume = DEFAULT_MUSIC_VOLUME;
     await bgMusic.play();
   } catch {}
 }
@@ -493,10 +500,35 @@ async function primeMusicFromGesture() {
 
   try {
     await bgMusic.play();
+    bgMusic.pause();
+    try {
+      bgMusic.currentTime = 0;
+    } catch {}
+    bgMusic.volume = DEFAULT_MUSIC_VOLUME;
     musicPrimedByGesture = true;
   } catch {
     bgMusic.volume = previousVolume;
   }
+}
+
+function bindGlobalAudioUnlock() {
+  if (audioUnlockBound) {
+    return;
+  }
+  audioUnlockBound = true;
+
+  const unlock = () => {
+    primeMusicFromGesture();
+    if (musicPrimedByGesture) {
+      ["pointerdown", "touchstart", "click", "keydown"].forEach((eventName) => {
+        window.removeEventListener(eventName, unlock, true);
+      });
+    }
+  };
+
+  ["pointerdown", "touchstart", "click", "keydown"].forEach((eventName) => {
+    window.addEventListener(eventName, unlock, true);
+  });
 }
 
 function renderContent() {
@@ -1268,6 +1300,7 @@ window.addEventListener("keydown", (event) => {
 });
 
 bgMusic.volume = DEFAULT_MUSIC_VOLUME;
+bindGlobalAudioUnlock();
 mainPage.classList.add("hidden");
 introScreen.classList.remove("hidden");
 closeModal();
